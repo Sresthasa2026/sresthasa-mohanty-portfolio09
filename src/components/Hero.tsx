@@ -108,23 +108,7 @@ const Hero = () => {
           </div>
 
           {/* Profile Image */}
-          <div className="relative animate-slide-in-right">
-            <div className="relative w-96 h-96 mx-auto lg:w-[500px] lg:h-[500px]">
-              {/* Glowing background ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 blur-3xl animate-pulse-glow"></div>
-              
-              {/* Profile image */}
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/30 hover:border-primary/50 transition-all duration-500 float">
-                <img src={heroProfile} alt="Sresthasa Mohanty - AI/ML Engineer" className="w-full h-full object-cover" />
-                
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/10"></div>
-              </div>
-              
-              {/* Rotating border */}
-              <div className="absolute inset-0 rounded-full border-2 border-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-clip-border animate-spin-slow opacity-50"></div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>;
