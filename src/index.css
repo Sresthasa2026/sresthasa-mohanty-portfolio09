@@ -8,35 +8,47 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark portfolio theme */
+    --background: 224 15% 6%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 224 20% 8%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 224 20% 8%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Peach primary color */
+    --primary: 11 83% 67%;
+    --primary-foreground: 224 15% 6%;
+    --primary-glow: 11 90% 75%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Teal secondary */
+    --secondary: 173 58% 39%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 224 25% 12%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 173 58% 39%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 224 25% 15%;
+    --input: 224 25% 15%;
+    --ring: 11 83% 67%;
 
-    --radius: 0.5rem;
+    /* Custom design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(173 70% 50%));
+    --gradient-radial: radial-gradient(circle at center, hsl(var(--primary) / 0.1), transparent 70%);
+    --glow-primary: 0 0 40px hsl(var(--primary) / 0.3);
+    --glow-secondary: 0 0 30px hsl(var(--secondary) / 0.3);
+    --shadow-elegant: 0 20px 40px -10px hsl(var(--background) / 0.8);
+    
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +112,120 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+}
+
+@layer components {
+  /* Animated background patterns */
+  .tech-bg {
+    background-image: 
+      radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(var(--secondary) / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsl(var(--primary) / 0.03) 0%, transparent 50%);
+    background-size: 100% 100%, 100% 100%, 100% 100%;
+    background-attachment: fixed;
+  }
+
+  /* Glowing button variants */
+  .btn-glow {
+    @apply relative overflow-hidden transition-all duration-300;
+    box-shadow: var(--glow-primary);
+  }
+  
+  .btn-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow-primary), 0 10px 30px hsl(var(--primary) / 0.2);
+  }
+
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Typing animation */
+  .typing {
+    border-right: 3px solid hsl(var(--primary));
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 50% { border-color: hsl(var(--primary)); }
+    51%, 100% { border-color: transparent; }
+  }
+
+  /* Skill meter animation */
+  .skill-meter {
+    @apply relative overflow-hidden;
+  }
+  
+  .skill-meter::before {
+    content: '';
+    @apply absolute inset-0 rounded-full;
+    background: conic-gradient(
+      hsl(var(--primary)) var(--progress, 0deg),
+      hsl(var(--muted)) var(--progress, 0deg)
+    );
+    mask: radial-gradient(circle at center, transparent 65%, white 65%);
+  }
+
+  /* Card hover effects */
+  .project-card {
+    @apply transition-all duration-500 hover:scale-105;
+    background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted) / 0.3));
+  }
+  
+  .project-card:hover {
+    box-shadow: var(--shadow-elegant), var(--glow-primary);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Particle system */
+  .particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: hsl(var(--primary) / 0.6);
+    border-radius: 50%;
+    animation: particle-float 15s linear infinite;
+  }
+  
+  @keyframes particle-float {
+    from {
+      transform: translateY(100vh) translateX(-50px);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-100px) translateX(50px);
+      opacity: 0;
+    }
   }
 }
