@@ -13,7 +13,7 @@ const About = () => {
     {
       degree: "Intermediate (Science)",
       institution: "KMBB Jr. Science College, Cuttack",
-      period: "2020 - 2022"
+      period: "2019-2021"
     },
     {
       degree: "High School",
