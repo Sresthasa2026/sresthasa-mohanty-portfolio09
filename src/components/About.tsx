@@ -18,7 +18,7 @@ const About = () => {
     {
       degree: "High School",
       institution: "SSVM, Puri",
-      period: "2018 - 2020"
+      period: "2018 - 2019"
     }
   ];
 
